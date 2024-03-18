@@ -1,0 +1,65 @@
+https://www.youtube.com/watch?v=2EBrICPZVLY
+https://www.youtube.com/watch?v=bKPIcoou9N8&t=4749s
+
+파이썬 설치(설치시에 Use admin privileges when installing py.exe와 Add python.exe to PATH 꼭 체크!)
+
+VS CODE 터미널에서 
+pip install selenium
+
+
+# 웹브라우저 버전문제를 해결하기 위함
+pip install webdriver-manager
+
+# 업데이트?
+pip install -U selenium
+
+
+#엑셀 파일에서 데이터 관련 라이브러리
+pip install pandas
+pip install openpyxl
+
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
+
+url = 'https://www.hometax.go.kr'
+driver.get(url)
+driver.maximize_window()
+time.sleep(5)
+
+try:
+    #로그인 버튼 클릭
+    login_button = driver.find_element("css selector", "#group1544")
+    login_button.click()
+    time.sleep(5)
+
+    #공동인증서 로그인 버튼 클릭
+    joint_cert_button = driver.find_element("css selector", "#anchor22")
+    joint_cert_button.click()
+    time.sleep(10)
+
+    
+
+    # 아이디를 입력하는 입력란을 찾아 값을 입력해줍니다.
+    #id_input = driver.find_element("css selector", "input[type='text']")
+    #id_input.send_keys("test_id")
+
+    # 여기서 다음 단계를 수행할 수 있도록 충분한 시간을 주기 위해 잠시 기다립니다.
+    #time.sleep(5)
+
+    #login_button = driver.find_element("css selector", ".VfPpkd-vQzf8d")
+    #login_button.click()
+
+except Exception as e:
+    print(f"예외 발생: {e}")
+
+driver.quit()
+
+
+
+
